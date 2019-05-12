@@ -1,0 +1,175 @@
+<html>
+	<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139527999-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-139527999-3');
+</script>
+
+				<style>
+			html {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				margin: 0;
+			}
+			
+			body {
+				display: grid;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				margin: 0;
+				grid-template-columns: repeat(10,10%);
+				grid-template-rows: repeat(10,10%);
+			}
+			
+			div {
+				border: 1px solid black;
+				display: grid;
+				width: 100%;
+				grid-template-columns: repeat(10,10%);
+				grid-template-rows: repeat(10,10%);
+				
+				background-color: #A8A8A8;
+			}
+			
+			span {
+				grid-column-start: 5;
+				grid-column-end: 11;
+				grid-row-start:4;
+			}
+			
+			img {
+				grid-column-start: 5;
+				grid-column-end: 10;
+				grid-row-start: 2;
+				grid-row-end: 10;
+				
+				height: 50%;
+			}
+			
+			form {
+				grid-column-start: 5;
+				grid-column-end: 11;
+				grid-row-start: 2;
+				grid-row-end: 11;
+			}
+			
+			.level3_title {
+				background-color: #707070;
+			}
+			
+			.level2_title {
+				background-color: #585858;
+			}
+			
+			.level1_title {
+				background-color: #484848;
+			}
+			
+			#title {
+				grid-column-start: 1;
+				grid-column-end: 11;
+				grid-row-start: 1;
+				grid-row-end: 1;
+			}
+			
+			#subtitle {
+				grid-column-start: 1;
+				grid-column-end: 11;
+				grid-row-start: 2;
+				grid-row-end: 2;
+			}
+			
+			#download {
+				grid-row-start: 3;
+				grid-row-end: 11;
+				grid-column-start: 1;
+				grid-column-end: 11;
+			}
+			
+			#inputs {
+				grid-column-start: 1;
+				grid-column-end: 11;
+				grid-row-start: 1;
+				grid-row-end: 11;
+				
+				border: 0px;
+			}
+			
+			#inputs input {
+				grid-column-start: 1;
+				grid-column-end: 3;
+				grid-row-start: 1;
+				grid-row-end: 11;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="title" class="level2_title">
+			<span>Thanks for signing up.</span>
+		</div>
+		<div id="subtitle" class="level3_title">
+			<span>Here's your certificate, use it to access the system.</span>
+		</div>
+		<div id="download">
+			<form method="post" action="https://dev.missilesys.com/download_cert">
+				<div id="inputs">
+					<input type="hidden" name="username" value="admin"></input>
+					<input type="hidden" name="password" value="admin"></input>
+					<input type="hidden" name="csr" value="-----BEGIN CERTIFICATE REQUEST-----
+MIICVTCCAT0CAQAwEDEOMAwGA1UEAwwFYWRtaW4wggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQDaUT5jxJx60Ze4TpO5wmJlTkzubNEcrJxGTb/Gl1euDhqi
+lqxy0/epk+6TDApF8DmPmodLOe/BsbUxKZPKTgjNHg5gwSkJeNOY2u8bhWkdh+wO
+HKRvAwjen19gpXzSKvgaLm8PCom88PtvfY7YimVfo36DP48DE2X7MJwOdjFvbL92
+oSj3NaH1sgn/uL3ma8ejrSeMDmHLTVybFSwJN02EKWB+h5W0DzaxLs4/fKGQuRXP
+txSGxuo2LmqvPIsuUBKazSEVul6sgb+laaY8MCLGc9QV76skkhKiDfLSFidfo0WR
+k3UyNgX/Lc+lFiS9TMFFy3+G4UzgvrqUIuFvRwORAgMBAAGgADANBgkqhkiG9w0B
+AQsFAAOCAQEAzic2JdqJftUTXALOByW99kduIrvXAvyURbY3tkAcDA5C257VmnSL
+kg9ow8Q2c8kmOBAB4BO1vG0Nkq+G12TQAZ7By+PXkMct3AueqJoTBkbJOUrOpImE
+uJifoulaLhG5vWWfG4kyGjftTTtmXptnXiGivPIMqGEwqmUC8G+Usaubp4Rsv5lh
+9hLNOJcW0Gy+xWp6Kz/xUumtzYyt/+DDacgPnwPdUb1My4CECcoj+HGK/oqMjNbc
+KAJgc9pBdaz3J1lpHyFxquRgadd3PGdSBw2HEU3coJEe7l5n750E3xFIy9gUNZQm
+aYsW+27b5S43JVTIxEVw9vsLkoCSlQ5pAA==
+-----END CERTIFICATE REQUEST-----
+"></input>
+					<input type="hidden" name="privatekey" value="-----BEGIN RSA PRIVATE KEY-----
+MIIEpgIBAAKCAQEA2lE+Y8ScetGXuE6TucJiZU5M7mzRHKycRk2/xpdXrg4aopas
+ctP3qZPukwwKRfA5j5qHSznvwbG1MSmTyk4IzR4OYMEpCXjTmNrvG4VpHYfsDhyk
+bwMI3p9fYKV80ir4Gi5vDwqJvPD7b32O2IplX6N+gz+PAxNl+zCcDnYxb2y/dqEo
+9zWh9bIJ/7i95mvHo60njA5hy01cmxUsCTdNhClgfoeVtA82sS7OP3yhkLkVz7cU
+hsbqNi5qrzyLLlASms0hFbperIG/pWmmPDAixnPUFe+rJJISog3y0hYnX6NFkZN1
+MjYF/y3PpRYkvUzBRct/huFM4L66lCLhb0cDkQIDAQABAoIBAQCou3oY6fB3DF7S
+2Ahc3dvmqGnVLM1B+DagL581AeuGXug/GW0XIrSbn/YYOIoIG+6hCrHedlzTu2Fr
+KdNL3Jv4zG4YYbIx2+zOiweaobXoWREcpw5/rjzAszSoIb8jQIqY0aKMYXyrRyVN
+uiEZQ32uOVKiZhFGM0vypFM46iizEE+3Fy2wkoFhaEHB3o8lN7inSRIPyr8K3FHb
+I1kr/swEulg3MZhJR2AXz+TrCPv2CG46TJu39pUh0+IzikBb8iuytmaYEOWi+MoC
+S+BChb2Fkd+Dt2RAQk5KDDAXQxhTLBMld8n4rqD7C7sIbaTzCsgUgkeAHu1P0JWl
+33rD2EfxAoGBAPoVNm9uWCkCh8KkxmRcU45yMPrvVyreCxYHHRusZiMiARmfoaH1
+9IcT0tb9/ZvVutpV2WHk2HskXABUGkW9f/sBqBc/7qsMqdXJPd7bciPkmt1Dilz1
+lDQxgCQ6kalYz5w3beCbTE0JNYGuHZ3jQUx5KRP5kkG3EQzzKQoLH6d3AoGBAN97
+n3cgBaHtzK5d/2y0p+RKHr9g87U12+/P4l7D1wIN3QGpib9y0fXzmjVYg1VjUAv0
+KSfDaxUf9+BSTAnuyd4JqI9AMnPxhomie/GtvHqrq7G22KkEe+KKs491ei8cVcMu
+TYfkKB8/SojF+6xuNkI95Rf8TfwwVxq0N1tJSn83AoGBALOOrYH+eUAgt/cyNdvz
+Sm8ZYD+bvzthKBaNzwGCm+cX0DBkpDnUjdi6jASfYwsTv1BqmWUnWaO47HGz8RUn
+xY8kllrzJVsdAYglMM4lQ+OvjN3XU64BCYMcE4RvpQwxXwcr6TF+b59UQF229T7a
+35SX3b2g0LlsRsrEgC/c4sJrAoGBANsXPeEyQnNaRtQWkMcIYKPcykICkUlwkLqM
+ibcvtURtROJRTBqlPRMrC14K9U4ru5jMd+Bko0ElgwOmiqceM0b7HwW5AP1LpgKe
+iXYIRgPY8syZndQs8irIoXodyHgRBj7/0MBNO8xOZwqpVa7YqVbNiR+3mNiIp4wl
+azOSKXeHAoGBAPGysoH5A8eCAUX2tpxOgUmLyrhcafypLkGkaUlY0zq7vFVQ7R7O
+mRxtwIZnZSwOhsDcRmxFFR4PuyRtosRh53bLY2VYgGQ4CFiVLmbM25Glh6JidWXJ
+K43F/u0Z44eK9Vgew+2xyMzIHsSTnhk9m4ugpV4T+IjZASvnuelUiRai
+-----END RSA PRIVATE KEY-----
+"></input>
+					<input type="submit" value="Download"></input>	
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
