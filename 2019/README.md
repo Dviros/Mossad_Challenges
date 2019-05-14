@@ -1,5 +1,5 @@
-### Mossad Challenge 2019
-# Entry Level
+# Mossad Challenge 2019
+## Entry Level
 When we browse to https://r-u-ready-4.it/, we can see a weird logo with marked symbol and unmarked ones.
 That's binary.
 I'll use powershell to convert from binary to decimal:
@@ -36,7 +36,7 @@ However, still not possible to access settings - need to be administrator.
 
 <img src="./Challenge_2.jpg">
 
-# How to:
+### How to:
 ```
 openssl genrsa -out admin.key
 openssl req -new -key admin.key -out admin.csr (CN=admin, o=International Weapons Export Inc.)
